@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bitterbal van de Dag 🍽️</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f9f9f9;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    header {
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    h1 {
+      margin: 0;
+      color: #c07f00;
+      font-size: 2rem;
+    }
+    p {
+      margin: 10px 0 0;
+      color: #555;
+      font-size: 1rem;
+    }
+    .bitterbal {
+      flex-grow: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .bitterbal img {
+      width: 90vw;
+      max-width: 800px;
+      height: auto;
+      border-radius: 20px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease;
+    }
+    .bitterbal img:hover {
+      transform: scale(1.02);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Bitterbal van de Dag 🍽️</h1>
+    <p id="datumTekst"></p>
+  </header>
+  <div class="bitterbal" id="bitterbalImage">
+    <!-- afbeelding wordt hier ingeladen -->
+  </div>
+
+  <script>
+    const bitterballen = [
+      "https://pbs.twimg.com/media/GpuFpqSXAAA-qRi?format=jpg&name=medium",
+      "https://pbs.twimg.com/media/GpuFs3XXEAAH4hr?format=jpg&name=medium",
+      "https://pbs.twimg.com/media/GpuFvG6WoAAlAsx?format=jpg&name=medium",
+      "https://pbs.twimg.com/media/GpuFyKUXMAAYktg?format=jpg&name=medium",
+      "https://pbs.twimg.com/media/GpuF1m8WAAEpSD8?format=jpg&name=medium",
+      "https://pbs.twimg.com/media/GpuF1rkXAAAi5Kk?format=jpg&name=medium",
+      "https://pbs.twimg.com/media/GpuF1m8WAAIqa7N?format=jpg&name=medium",
+      "https://pbs.twimg.com/media/GpuF1m0WcAAgnd1?format=jpg&name=medium",
+      "https://pbs.twimg.com/media/GpuF4OZWYAAa31A?format=jpg&name=medium",
+      "https://pbs.twimg.com/media/GpuF4K5WwAAAcPE?format=jpg&name=large",
+      "https://pbs.twimg.com/media/GpuF4K5WAAA8YQR?format=jpg&name=medium",
+      "https://pbs.twimg.com/media/GpuF4K6WEAAjfT1?format=jpg&name=medium",
+      "https://pbs.twimg.com/media/GpuF6zEXEAAxpWx?format=jpg&name=medium",
+      "https://pbs.twimg.com/media/GpuF6zDXAAAvHRC?format=jpg&name=large",
+      "https://pbs.twimg.com/media/GpuF6zLXEAE_-FR?format=jpg&name=medium",
+      "https://pbs.twimg.com/media/GpuF6y8X0AA-MMc?format=jpg&name=medium",
+      "https://pbs.twimg.com/media/GpuF9XJWMAAxONa?format=jpg&name=medium",
+      "https://pbs.twimg.com/media/GpuF9XDXAAA-TdS?format=jpg&name=medium",
+      "https://pbs.twimg.com/media/GpuF9XIXoAACzzf?format=jpg&name=medium",
+      "https://pbs.twimg.com/media/GpuF9XBXIAAJjR8?format=jpg&name=medium",
+      "https://pbs.twimg.com/media/GpuGAlWXQAAojGv?format=jpg&name=large",
+      "https://pbs.twimg.com/media/GpuGAlZWwAAQkKk?format=jpg&name=medium",
+      "https://pbs.twimg.com/media/GpuGCx2XAAAnGUy?format=jpg&name=medium",
+      "https://pbs.twimg.com/media/GpuGCxmWcAAFTE1?format=jpg&name=medium",
+      "https://pbs.twimg.com/media/GpuGCzBWIAEw6ub?format=jpg&name=medium",
+      "https://pbs.twimg.com/media/GpuGCxvWkAAGfx8?format=jpg&name=medium"
+    ];
+
+    // Bepaal UTC-middernacht van vandaag
+    const now = new Date();
+    const utcMidnight = Date.UTC(
+      now.getUTCFullYear(),
+      now.getUTCMonth(),
+      now.getUTCDate()
+    );
+    const daysSinceEpoch = Math.floor(utcMidnight / (1000 * 60 * 60 * 24));
+    const index = daysSinceEpoch % bitterballen.length;
+    const afbeeldingUrl = bitterballen[index];
+
+    // Toon de afbeelding
+    document.getElementById('bitterbalImage').innerHTML =
+      `<img src="${afbeeldingUrl}" alt="Bitterbal van de dag">`;
+
+    // Datumtekst maken
+    const dagen = ["zondag","maandag","dinsdag","woensdag","donderdag","vrijdag","zaterdag"];
+    const maanden = ["januari","februari","maart","april","mei","juni","juli","augustus","september","oktober","november","december"];
+    const datum = new Date();
+    document.getElementById('datumTekst').textContent =
+      `Vandaag is ${dagen[datum.getDay()]} ${datum.getDate()} ${maanden[datum.getMonth()]} ${datum.getFullYear()}`;
+  </script>
+</body>
+</html>
